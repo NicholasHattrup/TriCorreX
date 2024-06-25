@@ -4,6 +4,6 @@ Any practioner and/or enthasuasist of molecular dynamics has likely come across 
 ![Pair Analysis](images/rdf.png "Pair Analysis Diagram")
 This reveals the perferred 2-body seperation distrubtion at $\rho^{*}=0.45$ and $T^{ *}=1.0$. With a maximum at $\approx 1.12 \ \sigma$. In practice, the RDF is approximated by dividing the radial distance of interest into seperate bins, and couting how many pair seperation distances fall within each bin (i.e. how many pairs of particles were seperated by a distance $d \in \lbrace r-\Delta r / 2, \ r+\Delta r / 2 \rbrace$). The choice of $\Delta r$ leads to finer or coarser binning, which can *potentially* lead to problems down the line. However, thoughtful smoothing can mitigate if not eliminate these issues. In general, measuring the RDF is safe in that their are few if any suprises in it's approximation.  
 
-The situation complicates itself when it comes to 3-body interactions. While 2-body interactions can be characterized by *one* pair seperation distance, 3-body interactions require accounting for 3 independent pair seperation distances. For a pair $ijk$ with seperation distances $r_{ij}$, $r_{ik}$, $r_{jk}$ 
+The situation complicates itself when it comes to 3-body interactions. While 2-body interactions can be characterized by *one* pair seperation distance, 3-body interactions require accounting for 3 independent pair seperation distances. For a pair ijk with seperation distances $r_{\text{ij}}$, $r_{ik}$, $r_{jk}$ 
 
 
