@@ -13,5 +13,5 @@ $$\propto \sqrt{\frac{N}{M^3}}^{-1}$$
 And in general, to achieve the same statisical error as the RDF, our 3-body histogram would require $M^2$ more data-points.  
 
 
-Within a volume V at number density $\rho$ we have $N=\rho V$ particles, and thus $N(N-1)/2$ unique particle pairs. 
+Within a volume V at number density $\rho$ we have $N=\rho \text{V}$ particles, and thus $\text{N}(\text{N}-1)/2$ unique particle pairs. 
 
