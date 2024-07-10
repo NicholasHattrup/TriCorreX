@@ -10,5 +10,5 @@ Sufficient sampling in either case is essential for a trust-worthy approximation
 $$\propto \sqrt{\frac{N}{M}}^{-1}$$
 An equivalent 3-body histogram would require $M^3$ bins, and as such it's error per bin:
 $$\propto \sqrt{\frac{N}{M^3}}^{-1}$$
-
+And in general, to achieve the same statisical error as the RDF, our 3-body histogram would require $M^2$ more data-points.  
 
