@@ -8,5 +8,7 @@ The situation complicates itself when it comes to 3-body interactions. While 2-b
 
 Sufficient sampling in either case is essential for a trust-worthy approximation to the true correlation function. In the case of the RDF, if we have N data points for the M bins, our (best case) error scales as: 
 $$\propto \sqrt{\frac{N}{M}}^{-1}$$
+An equivalent 3-body histogram would require $M^3$ bins, and as such it's error per bin:
+$$\propto \sqrt{\frac{N}{M^3}}^{-1}$$
 
 
