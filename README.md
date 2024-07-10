@@ -7,9 +7,9 @@ This reveals the perferred 2-body seperation distrubtion at $\rho^{*}=0.45$ and 
 The situation complicates itself when it comes to 3-body interactions. While 2-body interactions can be characterized by *one* pair seperation distance, 3-body interactions require accounting for 3 independent pair seperation distances. For a pair ijk with seperation distances $r_{\text{ij}}$, $r_{\text{ik}}$, $r_{\text{jk}}$ we now need a bin accounting for a triplet centered at some 3 distances such that the bin width captures all 3. If we needed N bins for the RDF approximation, we now need $\text{N}^3$ bins to adequetly measure the 3-body correlations. This quickly reminds us of the curse of dimensionality, where far more data is needed as the dimensionality of the underlying distribution is increased. 
 
 Sufficient sampling in either case is essential for a trust-worthy approximation to the true correlation function. In the case of the RDF, if we have N data points for the M bins, our (best case) average error scales as: 
-$$\propto \sqrt{\frac{\text{N}}{M}}^{-1}$$
+$$\propto \sqrt{\frac{\text{N}}{\text{M}}}^{-1}$$
 An equivalent 3-body histogram would require $M^3$ bins, and as such it's error per bin:
-$$\propto \sqrt{\frac{\text{N}}{M^3}}^{-1}$$
+$$\propto \sqrt{\frac{\text{N}}{\text{M}^3}}^{-1}$$
 And in general, to achieve the same statisical error as the RDF, our 3-body histogram would require $M^2$ more data-points.  
 
 
