@@ -19,6 +19,6 @@ To get the same error in the 3-body histogram would require:
 
 $$\text{M}^2\text{p}(\text{p}-1)/2$$ 
 
-points. Or $3\text{M}^2/(\text{p}-2)$
+points. Or $3\text{M}^2/(\text{p}-2)$ as many configurations. For typical MD systems to mitigate finite sizes effect we might consider 10000 particles, if we desired M=300 then we would require ~27 configurations to achieve the same error as one configuration for the RDF. 
 
 
