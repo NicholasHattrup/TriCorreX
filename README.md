@@ -17,6 +17,8 @@ $\text{p}(\text{p}-1)(\text{p}-2)/6$ unique triplets. If we approximated the RDF
 $$\propto \sqrt{\frac{\text{p}(\text{p}-1)}{2\text{M}}}^{-1}$$
 To get the same error in the 3-body histogram would require: 
 
-$$\text{M}^2\text{p}(\text{p}-1)/2$$
+$$\text{M}^2\text{p}(\text{p}-1)/2$$ 
+
+points. Or $3\text{M}^2/(\text{p}-2)$
 
 
