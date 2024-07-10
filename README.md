@@ -8,11 +8,12 @@ The situation complicates itself when it comes to 3-body interactions. While 2-b
 
 Sufficient sampling in either case is essential for a trust-worthy approximation to the true correlation function. In the case of the RDF, if we have N data points for the M bins, our (best case) average error scales as: 
 $$\propto \sqrt{\frac{\text{N}}{\text{M}}}^{-1}$$
-An equivalent 3-body histogram would require $M^3$ bins, and as such it's error per bin:
+An equivalent 3-body histogram would require $M^3$ bins, and as such it's error per bin scales as:
 $$\propto \sqrt{\frac{\text{N}}{\text{M}^3}}^{-1}$$
-And in general, to achieve the same statisical error as the RDF, our 3-body histogram would require $M^2$ more data-points.  
+And to achieve the same statisical error as the RDF, our 3-body histogram would require $M^2$ more data-points.  
 
+Within a volume V at number density $\rho$ we have $\text{p}=\rho \text{V}$ particles, and thus $\text{p}(\text{p}-1)/2$ unique particle pairs, and 
+$\text{p}(\text{p}-1)(\text{p}-2)/6$ unique triplets. If we approximated the RDF with one configuration using M bins, then our error would roughly scale as:
+$$\propto \sqrt{\frac{\text{p}(\text{p}-1)}{2\text{M}}}^{-1}$$
 
-Within a volume V at number density $\rho$ we have $\text{N}=\rho \text{V}$ particles, and thus $\text{N}(\text{N}-1)/2$ unique particle pairs, and 
-$\text{N}(\text{N}-1)(\text{N}-2)/6$ unique triplets. 
 
