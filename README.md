@@ -13,7 +13,10 @@ $$\propto \sqrt{\frac{\text{N}}{\text{M}^3}}^{-1}$$
 And to achieve the same statisical error as the RDF, our 3-body histogram would require $M^2$ more data-points.  
 
 Within a volume V at number density $\rho$ we have $\text{p}=\rho \text{V}$ particles, and thus $\text{p}(\text{p}-1)/2$ unique particle pairs, and 
-$\text{p}(\text{p}-1)(\text{p}-2)/6$ unique triplets. If we approximated the RDF with one configuration using M bins, then our error would roughly scale as:
+$\text{p}(\text{p}-1)(\text{p}-2)/6$ unique triplets. If we approximated the RDF with one configuration using M bins, then our error would scale as:
 $$\propto \sqrt{\frac{\text{p}(\text{p}-1)}{2\text{M}}}^{-1}$$
+To get the same error in the 3-body histogram would require: 
+
+$$\text{M}^2\text{p}(\text{p}-1)/2$$
 
 
