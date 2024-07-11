@@ -2,8 +2,21 @@ from numba import jit
 import numpy as np
 
 @jit(nopython=True)
-def g2(coords, L, R_max, num_bins, tol=1e-2):
-    hist = np.zeros(num_bins)
+def corre2(coords, L, R_max, num_bins):
+    """
+    Estimate the 2-body correlation function using histogramming.
+
+    Parameters:
+    coords (ndarray): Array of atomic coordinates.
+    L (float): Box length for periodic boundary conditions.
+    R_max (float): Maximum distance for binning.
+    num_bins (int): Number of bins for the histogram.
+    
+    Returns:
+    counts (ndarray): Histogram of particle counts at varying distance.
+    num_atoms (int): Number of atoms considered.
+    """
+    counts = np.zeros(num_bins)
     del_r = (R_max) / num_bins
     coords = coords % L
     num_atoms = len(coords)
@@ -17,6 +30,6 @@ def g2(coords, L, R_max, num_bins, tol=1e-2):
             if R_max < dist_ij:
                 continue
             bin_i = int((dist_ij) / del_r)
-            hist[bin_i] += 2 # Counting pair ij and ji
+            counts[bin_i] += 2 # Counting pair ij and ji
     # This is a O(n^2) operation, total loops is n(n-1)/2
-    return hist, num_atoms
+    return counts, num_atoms
