@@ -17,7 +17,7 @@ def corre2(coords, L, R_max, num_bins):
     num_atoms (int): Number of atoms considered.
     """
     counts = np.zeros(num_bins)
-    del_r = (R_max) / num_bins
+    del_r = R_max / num_bins
     coords = coords % L
     num_atoms = len(coords)
     for i in range(num_atoms-1):
@@ -26,15 +26,16 @@ def corre2(coords, L, R_max, num_bins):
             # Nearest image 
             r_ij = coords[j] - ctr_coords
             r_ij -= L * np.round(r_ij / L)
-            dist_ij = np.sqrt(np.sum((r_ij)**2))
-            if R_max < dist_ij:
+            dist_ij = np.sqrt(np.sum(r_ij ** 2))
+            if dist_ij >= R_max:
                 continue
-            bin_i = int((dist_ij) / del_r)
-            counts[bin_i] += 2 # Counting pair ij and ji
+            bin_i = int(dist_ij / del_r)
+            counts[bin_i] += 2  # Counting pair ij and ji
     # This is a O(n^2) operation, total loops is n(n-1)/2
     return counts, num_atoms
-
-def bin_vols(R_max, num_bins):
+    
+@jit(nopython=True)
+def bin_volumes(R_max, num_bins):
     """
     Return volumes of shells used for binning in estimation of 2-body correlation function
     
@@ -43,13 +44,14 @@ def bin_vols(R_max, num_bins):
     num_bins (int): Number of bins for the histogram. 
 
     Returns:
-    volumes (ndarray): Shell volumes used for binning 
+    volumes (ndarray): Volumes of shells used for binning.
     """
     del_r = R_max / num_bins 
-    radial_dists = np.arange(0, num_bins+1) * del_r
-    volumes = 4 * np.pi * (radial_dists[1:] - radial_dists[:-1]) ** 3 / 3
+    radial_dists = np.linspace(0, R_max, num_bins + 1)
+    volumes = 4 * np.pi / 3 * (radial_dists[1:]**3 - radial_dists[:-1]**3)
     return volumes 
-    
+
+@jit(nopython=True)
 def g2(coords, L, R_max, num_bins, rho):
     """
     Estimate the radial distribution function (rdf) using histogramming.
@@ -62,13 +64,14 @@ def g2(coords, L, R_max, num_bins, rho):
     rho (float): Number density of system. 
     
     Returns:
-    g2 (ndarray): Binned estimate of radial distrubtion function. 
+    g2 (ndarray): Binned estimate of radial distribution function.
     """
     counts, num_atoms = corre2(coords, L, R_max, num_bins)
-    bin_counts = rho * bin_volumes(R_max, num_bins)
+    bin_vols = bin_volumes(R_max, num_bins)
+    bin_counts = rho * bin_vols
     g2 = counts / (num_atoms * bin_counts)
-    return g2 
-    
+    return g2
+
     
     
     
