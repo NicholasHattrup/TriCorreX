@@ -43,7 +43,7 @@ def bin_vols(R_max, num_bins):
     num_bins (int): Number of bins for the histogram. 
 
     Returns:
-    volumes (ndarray): Volumes of shells used for binning 
+    volumes (ndarray): Shell volumes used for binning 
     """
     del_r = R_max / num_bins 
     radial_dists = np.arange(0, num_bins+1) * del_r
