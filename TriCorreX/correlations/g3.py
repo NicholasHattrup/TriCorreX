@@ -60,7 +60,7 @@ def local3(idx, neighbors, positions, L, R_max, num_bins, counts):
             counts[r_bin, s_bin, t_bin] += 1
     return counts
 
-def tree3(coords, L, R_max, num_bins, tol=1e-2):
+def tree3(coords, L, R_max, num_bins):
     """
     Calculate the three-body correlation function using KDTree for neighbor searching.
 
