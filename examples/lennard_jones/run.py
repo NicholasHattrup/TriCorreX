@@ -2,10 +2,6 @@ import sys
 import os
 import numpy as np
 import subprocess
-
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
-sys.path.append(src_path)
-
 from TriCorreX.utils.dat2array import dat2array
 
 
