@@ -1,0 +1,11 @@
+# Ignore all .lammps files
+*.lammps
+
+# Ignore all .npy files
+*.npy
+
+# Ignore all .dat files
+*.dat
+
+# Ignore all .log files
+*.log

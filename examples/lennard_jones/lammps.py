@@ -52,7 +52,7 @@ def main():
     script = generate_script(template, config)
     save_script(script, args.path, args.output)
     
-    print(f"Generated script saved to {args.output} in {args.path}.")
+    print(f"Generated script saved as {args.output} in {os.path.abspath(args.path)}")
 
 if __name__ == "__main__":
     main()
