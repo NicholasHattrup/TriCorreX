@@ -20,6 +20,6 @@ velocity all create {inp_temp} {inp_vel_seed}
 
 run {inp_equil_steps}
 
-dump mydmp all custom {inp_sample_freq} {inp_output_file} id x y z
+dump mydmp all custom {inp_sample_freq} {inp_output_file} id x y z xu yu zu
 
 run {inp_prod_steps}
