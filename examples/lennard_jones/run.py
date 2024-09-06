@@ -31,8 +31,11 @@ def main():
         subprocess.run(["python", "lammps.py", "template.txt", f"{directory}/lj_{directory}.json", directory], check=True)
         os.chdir(directory)
         subprocess.run(["mpirun", "-np", "4", "lmp_mpi", "-in", "input.lammps"], stdout=open("output.log", "w"), check=True)
-        configs = dat2array("configs.dat")
-        np.save("configs.npy", configs)
+        configs = dat2array("configs.dat") # x y z xu yu zu
+        configs_wrapped = configs[:, :, :3]
+        configs_unwrapped = configs[:, :, 3:]
+        np.save("configs_w.npy", configs_wrapped)
+        np.save("configs_uw.npy", configs_unwrapped)
         os.chdir("..")
 
 if __name__ == "__main__":
