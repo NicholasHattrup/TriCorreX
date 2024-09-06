@@ -5,6 +5,8 @@ import sys
 import argparse
 from TriCorreX.correlations import g2
 from TriCorreX.correlations import g3 
+from TriCorreX.utils import transport
+
 
 def load_configs(file_path):
     '''
@@ -17,12 +19,18 @@ def main():
     parser.add_argument('--path', type=str, default='.')
     parser.add_argument('--file', type=str)
     parser.add_argument('--params', type=str, default='params.yaml')   
-    parser.add_argument('--compute_g2', type=bool, default=True)
-    parser.add_argument('--compute_g3', type=bool, default=True)
+    parser.add_argument('--compute_msd', type=bool, default=False)
+    parser.add_argument('--compute_D', type=bool, default=False)
+    parser.add_argument('--time_step', type=float, default=None)
+    parser.add_argument('--compute_g2', type=bool, default=False)
+    parser.add_argument('--compute_g3', type=bool, default=False)
     args = parser.parse_args()
     directory = args.path
     configs_file = args.file
     params_file = args.params
+    compute_msd = args.compute_msd
+    compute_D = args.compute_D
+    time_step = args.time_step
     compute_g2 = args.compute_g2
     compute_g3 = args.compute_g3
     # Load the configurations
@@ -44,6 +52,18 @@ def main():
         # Now given dist[i], reassign as dist[i] = (dist[i] + dist[i+1])/2
         dist = (dist[:-1] + dist[1:])/2
         np.save(os.path.join(directory, 'g2.npy'), np.column_stack((rdf, dist)))
+    
+    if compute_msd:
+        msd = transport.compute_msd(configs)
+        np.save(os.path.join(directory, 'msd.npy'), msd)
+        if compute_D:
+            if time_step is None:
+                raise ValueError("Time step must be provided to compute the diffusion coefficient.")
+            time = np.arange(len(msd)) * time_step
+            D = transport.compute_diffusion(msd, time)
+            np.save(os.path.join(directory, 'D.npy'), D)
+
+        
 
     # TO-DO
     # Add g3 functionality 
