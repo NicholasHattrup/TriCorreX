@@ -1,7 +1,7 @@
 import numba as np 
 from numba import jit
 
-def compute_S2(distances, g2, density, tol=1e-6):
+def compute_S2(distances, g2, density, integrate= True, tol=1e-6):
     """
     Compute the per-particle 2-body excess entropy S2.
 
@@ -20,8 +20,9 @@ def compute_S2(distances, g2, density, tol=1e-6):
     dr = distances[1] - distances[0]
     mask = g2 > tol
     integrand = np.where(mask, (g2 * np.log(g2) - g2 + 1), 0) * distances**2
-    integral = np.trapz(integrand, dx=dr)
-    S2 = -2 * np.pi * density * integral
+    S2 = -2 * np.pi * density * integrand 
+    if integrate:
+        return np.trapz(S2, distances)
     return S2
 
 @jit(nopython=True)
