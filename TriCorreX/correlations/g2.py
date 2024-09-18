@@ -33,7 +33,7 @@ def compute_g2(coords, L, R_max, num_bins, rho):
         counts += compute_corre2(coords, L, R_max, num_bins, num_atoms)
     else:
         samples, num_atoms, _ = coords.shape
-        with ProcessPoolExecutor(max_workers=4) as executor:
+        with ProcessPoolExecutor(max_workers=9) as executor:
             futures = [executor.submit(compute_corre2, coords[i], L, R_max, num_bins, num_atoms) for i in range(samples)]
             for future in as_completed(futures):
                 counts += future.result()
