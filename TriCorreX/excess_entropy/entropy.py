@@ -24,6 +24,41 @@ def compute_S2(distances, g2, density, tol=1e-6):
     S2 = -2 * np.pi * density * integral
     return S2
 
+def compute_S2_cumulative(distances, g2, density, tol=1e-6):
+    """
+    Compute the cumulative per-particle 2-body excess entropy S2.
+
+    Parameters:
+    distances (ndarray): Array of distance values.
+    g2 (ndarray): Radial distribution function values corresponding to the distances.
+    density (float): Number density of particles.
+    tol (float): Tolerance value to filter rdf values considered as zero (default is 1e-6).
+
+    Returns:
+    ndarray: The computed cumulative per-particle 2-body excess entropy S2.
+    """
+    if len(distances) != len(g2):
+        raise ValueError("distances and rdf must have the same length.")
+
+    dr = (distances[1] - distances[0])/2
+    mask = g2 > tol
+    integrand = np.where(mask, (g2 * np.log(g2) - g2 + 1), 0) * distances**2
+    cum_int = np.zeros(len(distances))
+    cum_int[0] = integrand
+    for i in range(1, len(distances)-1):
+        cum_int[i] = cum_int[i-1] + 2*integrand[i]
+    cum_int[-1] = cum_int[-2] + integrand[-1]
+    cum_int *= dr 
+    cum_S2 = -2 * np.pi * density * cum_int
+    return cum_S2
+
+
+
+
+
+
+
+
 @jit(nopython=True)
 def compute_S3(r, s, t, g2, g3, vols, density, tol=1e-6):
     """
