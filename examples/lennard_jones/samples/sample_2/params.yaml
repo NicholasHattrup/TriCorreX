@@ -1,0 +1,8 @@
+L: 30.285
+rho: 0.09
+g2:
+  n_bins: 300
+  r_max: 15.0
+g3:
+  n_bins: null
+  r_max: null
