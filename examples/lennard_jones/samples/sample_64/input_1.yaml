@@ -3,7 +3,7 @@ system_settings:
   pair_style: lj/cut 2.5
   num_atoms: 2500
   length: 13.5
-  pos_seed: 3787
+  pos_seed: 3491
 potential_settings:
   epsilon: 1.0
   sigma: 1.0
@@ -13,7 +13,7 @@ thermo_settings:
   damp: 100
 run_settings:
   time_step: 0.005
-  vel_seed: 7578
+  vel_seed: 4820
   equil_steps: 10000
   prod_steps: 2000
 sample_settings:
