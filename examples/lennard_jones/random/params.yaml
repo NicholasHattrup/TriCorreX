@@ -1,0 +1,10 @@
+L: 10.0
+rho: 1.0
+g2:
+  n_bins: 200
+  r_max: 5
+g3:
+  n_bins: 200
+  r_max: 5
+
+  

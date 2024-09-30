@@ -9,3 +9,6 @@
 
 # Ignore all .log files
 *.log
+
+# Ignore local tutorial_local.ipynb
+tutorial_local.ipynb

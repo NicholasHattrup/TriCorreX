@@ -1,11 +1,10 @@
-params:
-  L: 14.33
-  rho: 0.85
-  g2:
-    n_bins: 200
-    r_max: 7.0
-  g3:
-    n_bins: 200
-    r_max: 7.0
+L: 10.56
+rho: 0.85
+g2:
+  n_bins: 200
+  r_max: 5
+g3:
+  n_bins: 200
+  r_max: 5
 
   

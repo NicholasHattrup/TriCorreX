@@ -1,0 +1,26 @@
+system_settings:
+  units: lj
+  pair_style: lj/cut 2.5
+  num_atoms: 1000
+  length: 10.0
+  pos_seed: 3227
+
+potential_settings:
+  epsilon: 1.0
+  sigma: 1.0
+  mass: 1.0
+
+thermo_settings:
+  temp: 2.0
+  damp: 100
+
+run_settings:
+  time_step: 0.005
+  vel_seed: 6501
+  equil_steps: 10000
+  prod_steps: 100000
+
+sample_settings:
+  sample_freq: 200
+  output_file: "configs.dat"
+
