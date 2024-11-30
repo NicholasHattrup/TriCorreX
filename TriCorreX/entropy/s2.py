@@ -18,8 +18,8 @@ def compute_s2(distances, g2, rho, tol=1e-6):
         raise ValueError("distances and rdf must have the same length.")
 
     mask = g2 > tol
-    integrand = np.zeros(len(distances))
-    integrand[mask] = (g2[mask] * np.log(g2[mask]) - g2[mask] + 1) * distances[mask]**2
+    integrand = distances.copy()**2
+    integrand[mask] = (g2[mask] * np.log(g2[mask]) - g2[mask] + 1)
     s2 = -2 * np.pi * rho * integrand 
     return np.trapz(s2, distances)
 
@@ -42,8 +42,8 @@ def compute_s2_cumulative(distances, g2, rho, tol=1e-6):
 
     dr = (distances[1] - distances[0])/2
     mask = g2 > tol
-    integrand = np.zeros(len(distances))
-    integrand[mask] = (g2[mask] * np.log(g2[mask]) - g2[mask] + 1) * distances[mask]**2
+    integrand = distances.copy()**2
+    integrand[mask] = (g2[mask] * np.log(g2[mask]) - g2[mask] + 1)
     cum_int = np.zeros(len(distances))
     cum_int[0] = integrand[0]
     for i in range(1, len(distances)-1):
