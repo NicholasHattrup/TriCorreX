@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.spatial import KDTree as Tree
 from numba import njit, prange
+from numba import atomic
 
 def get_neighbors(idx, pos, tree, L, R_max):
     """
@@ -129,6 +130,6 @@ def corre3(coords, L, R_max, num_bins):
                 r_bin = int(r / delr)
                 s_bin = int(s / delr)
                 t_bin = int(t / delr)
-                counts[r_bin, s_bin, t_bin] += 1
+                atomic.add(counts, (r_bin, s_bin, t_bin), 1)
     return counts, num_atoms
 
