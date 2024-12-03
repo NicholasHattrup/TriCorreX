@@ -80,6 +80,6 @@ def tree3(coords, L, R_max, num_bins):
     for idx in range(num_atoms - 2):
         pos = coords[idx]
         neighbors = get_neighbors(idx, pos, tree, L, R_max)
-        counts = local3(idx, neighbors, coords, L, R_max, num_bins, counts)
+        counts += local3(idx, neighbors, coords, L, R_max, num_bins, counts)
     return counts, num_atoms
 
