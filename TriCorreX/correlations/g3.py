@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.spatial import KDTree as Tree
+from numba import jit
 
 def get_neighbors(idx, pos, tree, L, R_max):
     """
@@ -85,6 +86,7 @@ def tree3(coords, L, R_max, num_bins):
 
 
 
+@jit(nopython=True)
 def corre3(coords, L, R_max, num_bins):
     """
     Calculate the three-body correlation function brute force.
