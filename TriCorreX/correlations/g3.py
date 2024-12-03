@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.spatial import KDTree as Tree
-from numba import jit
+from numba import njit, prange
 
 def get_neighbors(idx, pos, tree, L, R_max):
     """
@@ -86,7 +86,7 @@ def tree3(coords, L, R_max, num_bins):
 
 
 
-@jit(nopython=True)
+@njit(parallel=True)
 def corre3(coords, L, R_max, num_bins):
     """
     Calculate the three-body correlation function brute force.
@@ -106,7 +106,7 @@ def corre3(coords, L, R_max, num_bins):
     R_max_sq = R_max**2
     delr = R_max / num_bins
 
-    for i in range(0, num_atoms-2):
+    for i in prange(0, num_atoms-2):
         print(i)
         for j in range(i+1, num_atoms-1):
             d_ij = coords[j] - coords[i]
