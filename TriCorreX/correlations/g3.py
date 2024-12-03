@@ -107,7 +107,6 @@ def corre3(coords, L, R_max, num_bins):
     delr = R_max / num_bins
 
     for i in range(0, num_atoms-2):
-        print(i)
         for j in range(i+1, num_atoms-1):
             d_ij = coords[j] - coords[i]
             d_ij -= L * np.round(d_ij / L)
