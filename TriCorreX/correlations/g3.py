@@ -101,20 +101,19 @@ def corre3(coords, L, R_max, num_bins):
     Returns:
     tuple: Histogram of three-body distances, Number of atoms considered.
     """
-    counts = np.zeros((num_bins, num_bins, num_bins))
+    counts = np.zeros((num_bins, num_bins, num_bins), dtype=np.int64)
     num_atoms = len(coords)
     R_max_sq = R_max**2
     delr = R_max / num_bins
 
     for i in range(0, num_atoms-2):
-        print(i)
         for j in range(i+1, num_atoms-1):
+            d_ij = coords[j] - coords[i]
+            d_ij -= L * np.round(d_ij / L)
+            r_sq = np.sum(d_ij**2)
+            if r_sq > R_max_sq:
+                continue
             for k in range(j+1, num_atoms):
-                d_ij = coords[j] - coords[i]
-                d_ij -= L * np.round(d_ij / L)
-                r_sq = np.sum(d_ij**2)
-                if r_sq > R_max_sq:
-                    continue
                 d_ik = coords[k] - coords[i]
                 d_ik -= L * np.round(d_ik / L)
                 s_sq = np.sum(d_ik**2)
