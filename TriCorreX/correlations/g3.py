@@ -83,3 +83,49 @@ def tree3(coords, L, R_max, num_bins):
         counts += local3(idx, neighbors, coords, L, R_max, num_bins, counts)
     return counts, num_atoms
 
+
+
+def corre3(coords, L, R_max, num_bins):
+    """
+    Calculate the three-body correlation function brute force.
+
+    Parameters:
+    coords (ndarray): Array of atomic coordinates.
+    L (float): Box length for periodic boundary conditions.
+    R_max (float): Maximum distance for correlation calculation.
+    num_bins (int): Number of bins for the histogram.
+    tol (float): Tolerance for numerical accuracy (default 1e-2).
+
+    Returns:
+    tuple: Histogram of three-body distances, Number of atoms considered.
+    """
+    counts = np.zeros((num_bins, num_bins, num_bins))
+    num_atoms = len(coords)
+    R_max_sq = R_max**2
+    
+    for i in range(0, num_atoms-2):
+        print(i)
+        for j in range(i+1, num_atoms-1):
+            for k in range(j+1, num_atoms):
+                d_ij = coords[j] - coords[i]
+                d_ij -= L * np.round(d_ij / L)
+                r_sq = np.sum(d_ij**2)
+                if r_sq > R_max_sq
+                    continue
+                d_ik = coords[k] - coords[i]
+                d_ik -= L * np.round(d_ik / L)
+                s_sq = np.sum(d_ik**2)
+                if s_sq > R_max_sq
+                    continue
+                d_jk = coords[k] - coords[j]
+                d_jk -= L * np.round(d_jk / L)
+                t_sq = np.sum(d_jk**2)
+                if t_sq > R_max_sq
+                    continue
+                r, s, t = np.sqrt(r_sq), np.sqrt(s_sq), np.sqrt(t_sq)
+                r_bin = int(r / delr)
+                s_bin = int(s / delr)
+                t_bin = int(t / delr)
+                counts[r_bin, s_bin, t_bin] += 1
+    return counts, num_atoms
+
