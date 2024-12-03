@@ -102,7 +102,8 @@ def corre3(coords, L, R_max, num_bins):
     counts = np.zeros((num_bins, num_bins, num_bins))
     num_atoms = len(coords)
     R_max_sq = R_max**2
-    
+    delr = R_max / num_bins
+
     for i in range(0, num_atoms-2):
         print(i)
         for j in range(i+1, num_atoms-1):
