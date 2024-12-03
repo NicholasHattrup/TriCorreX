@@ -110,17 +110,17 @@ def corre3(coords, L, R_max, num_bins):
                 d_ij = coords[j] - coords[i]
                 d_ij -= L * np.round(d_ij / L)
                 r_sq = np.sum(d_ij**2)
-                if r_sq > R_max_sq
+                if r_sq > R_max_sq:
                     continue
                 d_ik = coords[k] - coords[i]
                 d_ik -= L * np.round(d_ik / L)
                 s_sq = np.sum(d_ik**2)
-                if s_sq > R_max_sq
+                if s_sq > R_max_sq:
                     continue
                 d_jk = coords[k] - coords[j]
                 d_jk -= L * np.round(d_jk / L)
                 t_sq = np.sum(d_jk**2)
-                if t_sq > R_max_sq
+                if t_sq > R_max_sq:
                     continue
                 r, s, t = np.sqrt(r_sq), np.sqrt(s_sq), np.sqrt(t_sq)
                 r_bin = int(r / delr)
